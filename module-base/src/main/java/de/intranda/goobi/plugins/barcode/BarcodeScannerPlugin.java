@@ -5,6 +5,7 @@ import de.intranda.goobi.plugins.barcode.config.BarcodeFormat;
 import de.intranda.goobi.plugins.barcode.config.BarcodeScannerPluginConfiguration;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import net.xeoh.plugins.base.annotations.PluginImplementation;
 import org.apache.commons.lang3.StringUtils;
 import org.goobi.production.plugin.DockAnchor;
 import org.goobi.production.plugin.interfaces.AbstractDockablePlugin;
@@ -21,6 +22,7 @@ import java.util.List;
 @Data
 @ManagedBean
 @RequestScoped
+@PluginImplementation
 public class BarcodeScannerPlugin extends AbstractDockablePlugin {
     @Override
     public String getId() {
