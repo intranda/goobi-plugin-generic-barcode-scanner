@@ -1,0 +1,129 @@
+#####################       Configuration        #####################
+
+++++++++++++++  goobi_webapi.xml   ++++++++++++++
+	<credentials ip="127.0.0.1" password="test">
+		<!-- Schaltet nur die Methode /process/check frei: -->
+		<command name="/process/check"/>
+		<!-- Schaltet alle Methoden unterhalb von /process frei: -->
+		<command name="/process"/>
+		<!-- Voller Zugriff: -->
+		<command name="/"/>
+	</credentials>		
+
+#####################   Get process infomation   #####################
+
+
+++++++++++++++   Process details   ++++++++++++++
+Get detailed information about a process and all its steps incl. progress, user and dates
+
+http://localhost:8080/Goobi/api/process/details/id/MY_ID?token=test
+http://localhost:8080/Goobi/api/process/details/title/MY_TITLE?token=test
+
+
+++++++++++++++   Process check   ++++++++++++++
+A quick check if a process exists and images do exist for this process
+
+http://localhost:8080/Goobi/api/process/check/id/MY_ID?token=test
+http://localhost:8080/Goobi/api/process/check/title/MY_TITLE?token=test
+
+
+++++++++++++++   Process report time range  ++++++++++++++
+Get the status of all processes within a time range
+
+http://localhost:8080/Goobi/api/process/report/2016-05-01/2016-07-01/?token=test
+
+
+++++++++++++++   Process report til today  ++++++++++++++
+Get the status of all processes from a given date til today
+
+http://localhost:8080/Goobi/api/process/report/2016-05-01/?token=test
+
+
+++++++++++++++   Process download   ++++++++++++++
+Download all images of a process as a zip file
+
+http://localhost:8080/Goobi/api/process/download/id/MY_ID?token=test
+http://localhost:8080/Goobi/api/process/download/title/MY_TITLE?token=test
+
+
+
+#####################   Create processes   #####################
+
+
+++++++++++++++   Process create from catalogue  ++++++++++++++
+
+Create a process on the basis of a process template ID, the catalogue name and a catalogue ID. Currently the catalogue is hardcoded to use GBV out of the configuration
+
+http://localhost:8080/Goobi/api/process/create/108/GBV/85992694X/?token=test
+http://localhost:8080/Goobi/api/process/create/108/85992694X/?token=test
+
+
+++++++++++++++   Process creation for Stanford  ++++++++++++++
+
+Create a process in Goobi for the Stanford Argo REST calls. All parameters are stored as properties for a process. Addionally some metadata is stored in the METS file too.
+
+http://localhost:8080/Goobi/api/process/stanfordcreate
+
+The call must transfer such xml via POST:
+
+<stanfordCreationRequest>
+   <objectId>druid:steffen</objectId>
+   <objectType>item</objectType>
+   <sourceID>sul:steffen</sourceID>
+   <title>George Stirling's heritage : a story of chequered love / by Graham Stark. author of "The laird and his friend"</title>
+   <contentType>Book (flipbook, ltr)</contentType>
+   <project>Jarndyce Single-Volume Nineteenth-Century Novel Collection</project>
+   <catkey>9370404</catkey>
+   <barcode></barcode>
+   <collectionId>druid:jt466yc7169</collectionId>
+   <collectionName>Jarndyce Single-Volume Nineteenth-Century Novel Collection, 1823-1914</collectionName>
+   <sdrWorkflow>goobiWF</sdrWorkflow>
+   <goobiWorkflow>Test_Workflow_QA_LAYOUTWIZZARD-Steffen-Demo-Please-Do-Not-Use</goobiWorkflow>
+</stanfordCreationRequest>
+
+In the POST request the token has to be given as request header too.
+
+++++++++++++++   Process creation for MPI  ++++++++++++++
+
+Create a process in Goobi for the MPI Berlin REST calls. All parameters are stored as properties for a process. Addionally some metadata is stored in the METS file.
+
+http://localhost:8080/Goobi/api/process/mpicreate
+
+The call must transfer such xml via POST:
+
+<mpiCreationRequest>
+   <user>abcUser</user>
+   <barcode>abcBarcode</barcode>
+   <signatur>abcSignatur</signatur>
+   <bestand>abcBestand</bestand>
+   <archiv>abcArchiv</archiv>
+   <titel>abcTitel</titel>
+   <kommentar>abcKommentar</kommentar>
+   <goobiWorkflow>Sample_Workflow</goobiWorkflow>
+</mpiCreationRequest>
+
+In the POST request the token has to be given as request header too.
+
+#####################   Delete processes   #####################
+
+++++++++++++++   Delete a process from goobi.  ++++++++++++++
+
+As post request:
+http://localhost:8080/Goobi/api/process/delete/id/1234?token=test
+
+
+#####################   Close step   #####################
+Close step:
+
+http://localhost:8080/Goobi/api/closestep/1234?token=test
+
+Close step and remove symlink:
+
+http://localhost:8080/Goobi/api/closestep/testadmin/2124143?token=test
+
+
+#####################   Update Process Property   #####################
+Change process property:
+
+curl -X PUT -H "Content-Type: application/json" -H "token: test" -d '1q2w3e' "http://goobitest.fritz.box/goobi/api/processes/37487/properties/foo"
+
