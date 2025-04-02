@@ -117,7 +117,7 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     private BarcodeScannerPluginConfiguration config() throws IOException {
         if (this.config == null) {
             XmlMapper mapper = new XmlMapper();
-            this.config = mapper.readValue(new File("/opt/digiverso/goobi/config/plugin_intranda_dockable_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
+            this.config = mapper.readValue(new File("/opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
         }
         return this.config;
     }
