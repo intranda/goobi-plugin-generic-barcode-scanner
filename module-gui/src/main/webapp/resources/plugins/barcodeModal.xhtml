@@ -26,8 +26,8 @@
                             <span class="fa fa-barcode me-2" aria-hidden="true" />
                             <span>
                                 #{cc.attrs.plugin.showConfig == false ?
-                                    msgs.plugin_footer_barcodeScanner_scanBarcode
-                                    : msgs.plugin_footer_barcodeScanner_configureBarcode}
+                                    msgs.plugin_generic_barcodeScanner_scanBarcode
+                                    : msgs.plugin_generic_barcodeScanner_configureBarcode}
                             </span>
                         </h3>
                         <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
@@ -39,7 +39,7 @@
                             <!-- Config page -->
                             <h:panelGroup rendered="#{cc.attrs.plugin.showConfig == true}">
                                 <form:field
-                                    label="#{msgs.plugin_footer_barcodeScanner_selectBarcodeFormat}">
+                                    label="#{msgs.plugin_generic_barcodeScanner_selectBarcodeFormat}">
                                     <h:selectOneMenu
                                         id="barcodeSelection"
                                         label="Barcode:"
@@ -96,7 +96,7 @@
                             <h:panelGroup rendered="#{cc.attrs.plugin.showConfig == false}">
                                 <h:panelGroup rendered="#{cc.attrs.plugin.activeFormats.size() > 0}">
                                     <form:field
-                                        label="#{cc.attrs.plugin.activeFormats.size() > 1 ? msgs.plugin_footer_barcodeScanner_activeFormats : msgs.plugin_footer_barcodeScanner_activeFormat}">
+                                        label="#{cc.attrs.plugin.activeFormats.size() > 1 ? msgs.plugin_generic_barcodeScanner_activeFormats : msgs.plugin_generic_barcodeScanner_activeFormat}">
                                         <ul role="list" class="p-0 m-0">
                                             <ui:repeat value="#{cc.attrs.plugin.activeFormats}" var="format">
                                                 <li>
@@ -107,7 +107,7 @@
                                     </form:field>
                                 </h:panelGroup>
                                 <form:field
-                                    label="#{msgs.plugin_footer_barcodeScanner_barcode}">
+                                    label="#{msgs.plugin_generic_barcodeScanner_barcode}">
                                     <h:inputText
                                             id="barcodeInput"
                                             autocomplete="off"
@@ -124,7 +124,7 @@
                                 jsf:id="modalConfig"
                                 type="button"
                                 class="btn btn-blank" >
-                                #{cc.attrs.plugin.showConfig ? msgs.plugin_footer_barcodeScanner_toScanning : msgs.plugin_footer_barcodeScanner_toConfiguration}
+                                #{cc.attrs.plugin.showConfig ? msgs.plugin_generic_barcodeScanner_toScanning : msgs.plugin_generic_barcodeScanner_toConfiguration}
                                 <f:setPropertyActionListener
                                         target="#{cc.attrs.plugin.showConfig}"
                                         value="#{not cc.attrs.plugin.showConfig}" />
@@ -137,7 +137,7 @@
                                 id="scanBarcode"
                                 styleClass="btn btn-primary"
                                 action="#{cc.attrs.plugin.scan()}"
-                                value="#{msgs.plugin_footer_barcodeScanner_scan}"
+                                value="#{msgs.plugin_generic_barcodeScanner_scan}"
                                 rendered="#{cc.attrs.plugin.showConfig == false}"
                             />
                             <button
@@ -146,7 +146,7 @@
                                 class="btn btn-action"
                                 jsf:rendered="#{cc.attrs.plugin.showConfig == true and cc.attrs.plugin.selectedConfigFormat != null}"
                                 onclick="showBarcode()">
-                                #{msgs.plugin_footer_barcodeScanner_createBarcode}
+                                #{msgs.plugin_generic_barcodeScanner_createBarcode}
                             </button>
                         </div>
                     </h:form>
