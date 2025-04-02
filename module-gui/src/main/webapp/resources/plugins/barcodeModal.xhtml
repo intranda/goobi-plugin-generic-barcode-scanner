@@ -113,6 +113,7 @@
                                             autocomplete="off"
                                             styleClass="form-control js-focus-on-open"
                                             value="#{cc.attrs.plugin.code}"
+                                            onkeydown="return submitEnter(getPrimaryButtonId(),event)"
                                     />
                                 </form:field>
                                 <input type="submit" hidden="true"/>
@@ -133,6 +134,7 @@
                                     onevent="(data) => { focusInputAjax(data); }" />
                             </button>
                             <h:commandButton
+                                id="scanBarcode"
                                 styleClass="btn btn-primary"
                                 action="#{cc.attrs.plugin.scan()}"
                                 value="#{msgs.plugin_footer_barcodeScanner_scan}"
@@ -166,6 +168,10 @@
                 if (data.status === 'success') {
                     focusInput();
                 }
+            };
+            const getPrimaryButtonId = () => {
+                button = modal.querySelector('.btn-primary');
+                return button.id;
             };
             function showBarcode() {
                 JsBarcode('.barcode').init();
