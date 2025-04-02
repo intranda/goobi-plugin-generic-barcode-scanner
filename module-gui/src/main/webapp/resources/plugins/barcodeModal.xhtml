@@ -43,7 +43,7 @@
                                     <h:selectOneMenu
                                         id="barcodeSelection"
                                         label="Barcode:"
-                                        styleClass="form-select"
+                                        styleClass="form-select js-focus-on-open"
                                         value="#{cc.attrs.plugin.selectedConfigFormat}"
                                         converter="omnifaces.SelectItemsConverter"
                                     >
@@ -111,7 +111,7 @@
                                     <h:inputText
                                             id="barcodeInput"
                                             autocomplete="off"
-                                            styleClass="form-control"
+                                            styleClass="form-control js-focus-on-open"
                                             value="#{cc.attrs.plugin.code}"
                                     />
                                 </form:field>
@@ -127,13 +127,16 @@
                                 <f:setPropertyActionListener
                                         target="#{cc.attrs.plugin.showConfig}"
                                         value="#{not cc.attrs.plugin.showConfig}" />
-                                <f:ajax render="@form :#{cc.clientId}:modalHeader" execute="@form" />
+                                <f:ajax
+                                    render="@form :#{cc.clientId}:modalHeader"
+                                    execute="@form"
+                                    onevent="(data) => { focusInputAjax(data); }" />
                             </button>
                             <h:commandButton
-                                    styleClass="btn btn-primary"
-                                    action="#{cc.attrs.plugin.scan()}"
-                                    value="#{msgs.plugin_footer_barcodeScanner_scan}"
-                                    rendered="#{cc.attrs.plugin.showConfig == false}"
+                                styleClass="btn btn-primary"
+                                action="#{cc.attrs.plugin.scan()}"
+                                value="#{msgs.plugin_footer_barcodeScanner_scan}"
+                                rendered="#{cc.attrs.plugin.showConfig == false}"
                             />
                             <button
                                 jsf:id="createBarcode"
@@ -151,14 +154,19 @@
         <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/barcodes/JsBarcode.code128.min.js"></script>
         <script>
             const modal = document.querySelector('#pluginModal#{cc.attrs.plugin.id}');
-            const barcodeInput = modal.querySelector('[id$="barcodeInput"]');
             const modalBody = modal.querySelector('.modal-body');
             modal.addEventListener('shown.bs.modal', function () {
-                barcodeInput.focus();
+                focusInput();
             });
-            modalBody.addEventListener('click', function () {
-                barcodeInput.focus();
-            });
+            const focusInput = () => {
+                const primaryInput = modal.querySelector('.js-focus-on-open');
+                primaryInput?.focus();
+            };
+            const focusInputAjax = (data) => {
+                if (data.status === 'success') {
+                    focusInput();
+                }
+            };
             function showBarcode() {
                 JsBarcode('.barcode').init();
             }
