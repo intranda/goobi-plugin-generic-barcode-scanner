@@ -1,9 +1,9 @@
-<project name="goobi-plugin-dockable-barcode-scanner" default="devbuild">
+<project name="goobi-plugin-generic-barcode-scanner" default="devbuild">
 	<target name="devbuild">
 		<exec executable="mvn">
 			<arg value="package"/>
 		</exec>
-		<copy file="module-gui/target/plugin-dockable-barcode-scanner-gui.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
-		<copy file="module-base/target/plugin-dockable-barcode-scanner-base.jar" todir="/opt/digiverso/goobi/plugins/dockable/"/>
+		<copy file="module-gui/target/plugin-generic-barcode-scanner-gui.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
+		<copy file="module-base/target/plugin-generic-barcode-scanner-base.jar" todir="/opt/digiverso/goobi/plugins/generic/"/>
 	</target>
 </project>
