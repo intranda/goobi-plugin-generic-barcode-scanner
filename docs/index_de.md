@@ -1,0 +1,75 @@
+---
+title: Barcode Scanner
+identifier: intranda_generic_barcodeScanner
+description: This Generic plugin for Goobi workflow allows to scan barcodes to perform configurable Goobi Scripts.
+published: false
+---
+
+## Einführung
+Dieses Plugin erlaubt die Ausführung beliebiger, konfigurierbarer Goobi Scripte durch Scannen von parametrisierten Barcodes. 
+
+## Installation
+Um das Plugin nutzen zu können, müssen folgende Dateien installiert werden:
+
+```bash
+/opt/digiverso/goobi/plugins/generic/plugin-generic-barcode-scanner-base.jar
+/opt/digiverso/goobi/plugins/GUI/plugin-generic-barcode-scanner-gui.jar
+/opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml
+```
+
+Nach der Installation des Plugins kann dieses konfigurierbar an verschiedenen Stellen eingebunden werden (beispielsweise als Barcode Knopf in der Hauptleiste).
+
+![Barcode Plugin in der Hauptleiste](screen1_en.png)
+
+
+## Überblick und Funktionsweise
+
+Beim Betreten des Plugins erscheint ein Dialogfenster. In diesem Dialogfenster können sowohl Barcodes gescannt als auch generiert werden.
+
+In der Konfigurationsansicht des Plugins können für konfigurierte Barcodeformate Barcodes erzeugt werden. Wählen Sie hierzu ein Barcodeformat
+aus der Drop-Down Liste aus. Danach können Sie für alle Parameter des Barcodeformats Werte eintragen. Anschließend können Sie einen Barcode erzeugen
+und via Drag-and-Drop an beliebige Stellen einfügen.
+
+![Barcode Generierung](screen2_en.png)
+
+In der Scanansicht des Plugins kann dann im Feld `Barcode` ein Barcode von Hand eingetragen oder über einen Barcodescanner gescannt werden.
+
+![Barcode Scannen](screen3_en.png)
+
+Wenn der Barcode einem konfigurierten Barcodeformat entspricht, wird das entsprechende Goobi Script aktiv geschaltet.
+
+![Barcodeformat aktiviert](screen4_en.png)
+
+Wenn das Plugin erneut betreten wird und dann ein Vorgangstitel gescannt wird, wird das zuvor aktivierte Goobi Script auf diesen Vorgang angewandt.
+
+![Vorgangsbarcode scannen](screen5_en.png)
+![Goobi Script auf Vorgang anwenden](screen6_en.png)
+
+Anstelle von Vorgängen können auch Batches gescannt werden. In diesem Fall wird das Goobi Script für alle Vorgänge des Batches ausgeführt.
+
+
+## Konfiguration
+Die Konfiguration des Plugins erfolgt in der Datei `plugin_intranda_generic_barcodeScanner.xml` wie hier aufgezeigt:
+
+{{CONFIG_CONTENT}}
+
+{{CONFIG_DESCRIPTION_PROJECT_STEP}}
+
+Parameter               | Erläuterung
+------------------------|------------------------------------
+`docking`                      | Mit diesem Element wird gesteuert, wo das Plugin eingebunden werden soll. Mit `MENU_BAR` kann das Plugin beispielsweise in der Hauptleiste eingeblendet werden. Das Element kann wiederholt werden, um das Plugin an mehreren Stellen einzubinden. Die möglichen Werte entnehmen Sie bitte der Dokumentation der `Generic` Plugins. 
+`barcode`                      | Das `barcode` Element kann beliebig häufig wiederholt werden um Barcodeformate zu spezifizieren. Ein Barcodeformat hat die Attribute `description`, `pattern` und `sample`. <br /><br />Die `description` ist eine textuelle Beschreibung des Barcodeformats. Falls das Barcodeformat Parameter enthalten kann, können diese mit `{{n}}` in die Beschreibung eingebunden werden. Hierbei ist `n` durch die Nummer des Parameters zu ersetzen, beginnend bei `1`.<br /><br />Das `pattern` ist ein regulärer Ausdruck, der den gesamten Barcode beschreibt. Im regulären Ausdruck können mit Klammern Gruppen definiert werden. Das kann verwendet werden, um Teile des Barcodes als Parameter zu definieren. Im Falle der Beispielkonfiguration ist `(\d+)` eine Gruppe die eine Zahl mit mindestens einer Ziffer beschreibt. Diese Gruppe ist dann als `{{1}}` (der erste Parameter) verwendbar.<br /><br />Das `sample` ist ein möglicher Beispielbarcode. Dieser wird bei der Barcodegenerierung verwendet, um mögliche Beispielbarcodes anzeigen zu können. Dieser Beispielbarcode muss zum regulären Ausdruck passen.<br /><br />Der Inhalt des `barcode` Elements ist ein beliebiges Goobi Script. Es können mit `---` auch mehrere Goobi Scripte hintereinander eingetragen werden. Mit `{{n}}` können die Parameter des Barcodes im Goobi Script verwendet werden.
+
+Weil die Konfiguration etwas komplex ist, erklären wir sie am Beispiel des zweiten Barcodeformats in der Konfiguration:
+
+Der Barcode hat die Beschreibung `Setze Vorgangseigenschaft '{{1}}' auf '{{2}}'`. Der reguläre Ausdruck ist `ps_(.*)_(\d+)` und ein Beispielbarcode könnte `ps_Standort_54` sein.
+Der reguläre Ausdruck passt zu allen Eingaben die mit `ps_` beginnen, danach kann irgendetwas beliebiges folgen, dann wieder ein Unterstrich `_` gefolgt von einer Zahl mit mindestens einer Ziffer.
+Wird ein solcher Barcode gescannt, beispielsweise `ps_Standort_54`, wird folgendes Goobi Script aktiviert:
+```
+action: propertySet
+name: Standort
+value: 54
+```
+Die beiden Platzhalten `{{1}}` und `{{2}}` wurden hier bereits durch die Werte `Standort` und `54` des gescannten Barcodes ersetzt.
+
+Wenn jetzt ein Vorgangstitel gescannt wird, wird dieses Goobi Script für den Vorgang ausgeführt. Das hat dann zur Folge, dass die Vorgangseigenschaft `Standort` auf den Wert `54` gesetzt wird.
