@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
 import org.apache.commons.lang3.StringUtils;
 import org.goobi.production.plugin.DockAnchor;
-import org.goobi.production.plugin.interfaces.AbstractDockablePlugin;
+import org.goobi.production.plugin.interfaces.AbstractGenericPlugin;
 
 import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.RequestScoped;
@@ -23,7 +23,7 @@ import java.util.List;
 @ManagedBean
 @RequestScoped
 @PluginImplementation
-public class BarcodeScannerPlugin extends AbstractDockablePlugin {
+public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     @Override
     public String getId() {
         return getTitle().replaceAll("\\s+", "");

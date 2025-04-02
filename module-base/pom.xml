@@ -2,9 +2,9 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>io.goobi.workflow.plugin</groupId>
-    <artifactId>plugin-dockable-barcode-scanner</artifactId>
+    <artifactId>plugin-generic-barcode-scanner</artifactId>
     <version>25.03-SNAPSHOT</version>
   </parent>
-  <artifactId>plugin-dockable-barcode-scanner-base</artifactId>
+  <artifactId>plugin-generic-barcode-scanner-base</artifactId>
   <packaging>jar</packaging>
 </project>

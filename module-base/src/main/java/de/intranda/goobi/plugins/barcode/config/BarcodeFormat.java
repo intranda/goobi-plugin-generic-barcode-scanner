@@ -13,7 +13,7 @@ import org.goobi.beans.Batch;
 import org.goobi.beans.Institution;
 import org.goobi.beans.Process;
 import org.goobi.beans.User;
-import org.goobi.production.plugin.interfaces.AbstractDockablePlugin;
+import org.goobi.production.plugin.interfaces.AbstractGenericPlugin;
 
 import java.util.*;
 import java.util.regex.Matcher;
@@ -73,7 +73,7 @@ public class BarcodeFormat {
         if (batch.isPresent()) {
             executeCurrentBarcodeForBatch(batch.get());
         } else {
-            process.ifPresentOrElse(this::executeCurrentBarcodeForProcess, () -> AbstractDockablePlugin.error("Process with title \"" + barcode.strip() + "\" not found!"));
+            process.ifPresentOrElse(this::executeCurrentBarcodeForProcess, () -> AbstractGenericPlugin.error("Process with title \"" + barcode.strip() + "\" not found!"));
         }
     }
 
