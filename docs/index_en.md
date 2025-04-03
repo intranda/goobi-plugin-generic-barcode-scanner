@@ -1,0 +1,74 @@
+---
+title: Barcode Scanner
+identifier: intranda_generic_barcodeScanner
+description: This generic plugin for Goobi workflow allows barcodes to be scanned and configurable GoobiScripts to be executed.
+published: true
+---
+
+## Introduction
+This plugin allows you to execute any configurable GoobiScripts by scanning parameterised barcodes. 
+
+## Installation
+In order to use the plugin, the following files must be installed:
+
+```bash
+/opt/digiverso/goobi/plugins/generic/plugin-generic-barcode-scanner-base.jar
+/opt/digiverso/goobi/plugins/GUI/plugin-generic-barcode-scanner-gui.jar
+/opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml
+```
+
+Once the plugin has been installed, it can be integrated at various points in the user interface (for example as a barcode button in the menu bar).
+
+![Barcode plugin in the menu bar](screen1_en.png)
+
+
+## Overview and functionality
+
+When entering the plugin, a dialogue window appears in which barcodes can be both scanned and generated.
+
+In the configuration view of the plugin, barcodes can be generated for configured barcode formats. To do this, select a barcode format
+from the drop-down list. Values can then be entered for all parameters of the barcode format. You can then have the configured barcode generated so that it can be used in any other programme or printed out via drag-and-drop, for example.
+
+![Barcode generation](screen2_en.png)
+
+In the scan view of the plugin, a barcode can then be entered manually in the ‘Barcode’ field or scanned using a barcode scanner.
+
+![Barcode Scannen](screen3_en.png)
+
+If the barcode corresponds to a configured barcode format, the corresponding GoobiScript is activated.
+
+![Barcodeformat aktiviert](screen4_en.png)
+
+If the plugin is re-entered and a process title is then scanned, the previously activated GoobiScript is applied to this process.
+
+![Scan process barcode](screen5_en.png)
+![Applying GoobiScript to a process](screen6_en.png)
+
+Batches can also be scanned instead of processes. In this case, the GoobiScript is executed for all processes in the batch.
+
+
+## Configuration
+The plugin is configured in the file `plugin_intranda_generic_barcodeScanner.xml` as shown here:
+
+{{CONFIG_CONTENT}}
+
+{{CONFIG_DESCRIPTION_PROJECT_STEP}}
+
+Parameter               | Explanation
+------------------------|------------------------------------
+`docking`                      | This element is used to control where the plugin is to be integrated. With `MENU_BAR`, for example, the plugin can be displayed in the main bar. The element can be repeated to integrate the plugin in several places. The values `FOOTER` and `MENU_BAR` can currently be selected to display the plugin either in the menu bar or in the footer bar.
+`barcode`                      | The `barcode` element can be repeated as often as required to specify barcode formats. A barcode format has the attributes `description`, `pattern` and `sample`. <br /><br />The `description` is a textual description of the barcode format. If the barcode format can contain parameters, these can be included in the description with `{{n}}`. In this case, `n` must be replaced by the number of the parameter, starting with `1`.<br /><br />Das `pattern` ist ein regulärer Ausdruck, der den gesamten Barcode beschreibt. Im regulären Ausdruck können mit Klammern Gruppen definiert werden. Das kann verwendet werden, um Teile des Barcodes als Parameter zu definieren. Im Falle der Beispielkonfiguration ist `(\d+)` eine Gruppe, die eine Zahl mit mindestens einer Ziffer beschreibt. Diese Gruppe ist dann als `{{1}}` (der erste Parameter) verwendbar.<br /><br />Das `sample` ist ein möglicher Beispielbarcode. Dieser wird bei der Barcodegenerierung verwendet, um mögliche Beispielbarcodes anzeigen zu können. Dieser Beispielbarcode muss zum regulären Ausdruck passen.<br /><br />Der Inhalt des `barcode` Elements ist ein beliebiges Goobi Script. Es können mit `---` auch mehrere Goobi Scripte hintereinander eingetragen werden. Mit `{{n}}` können die Parameter des Barcodes im GoobiScript verwendet werden.
+
+As the configuration is somewhat complex, we will explain it using the example of the second barcode format in the configuration:
+
+The barcode has the description `Set operation property ‘{{1}}’ to ‘{{2}}’`. The regular expression is `ps_(.*)_(\d+)` and an example barcode could be `ps_location_54`.
+The regular expression matches all inputs beginning with `ps_`, followed by anything, then again an underscore `_` followed by a number with at least one digit.
+If such a barcode is scanned, for example `ps_location_54`, the following GoobiScript is activated:
+```
+action: propertySet
+name: Standort
+value: 54
+```
+The two placeholders `{{1}}` and `{{2}}` have already been replaced here by the values `location` and `54` of the scanned barcode.
+
+If a process title is now scanned, this GoobiScript is executed for the process. As a result, the process property ‘Location’ is set to the value ‘54’.
