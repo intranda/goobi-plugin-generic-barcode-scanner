@@ -54,7 +54,7 @@ Die Konfiguration des Plugins erfolgt in der Datei `plugin_intranda_generic_barc
 
 {{CONFIG_CONTENT}}
 
-{{CONFIG_DESCRIPTION_PROJECT_STEP}}
+{{CONFIG_DESCRIPTION_GENERIC}}
 
 Parameter               | Erläuterung
 ------------------------|------------------------------------

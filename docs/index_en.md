@@ -54,7 +54,7 @@ The plugin is configured in the file `plugin_intranda_generic_barcodeScanner.xml
 
 {{CONFIG_CONTENT}}
 
-{{CONFIG_DESCRIPTION_PROJECT_STEP}}
+{{CONFIG_DESCRIPTION_GENERIC}}
 
 Parameter               | Explanation
 ------------------------|------------------------------------
