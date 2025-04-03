@@ -12,11 +12,11 @@ More information about the functionality of this plugin and the complete documen
 
 Detail                      | Description
 --------------------------- | ----------------------
-**Plugin identifier**       | intranda_step_imageQA
-**Plugin type**             | step
+**Plugin identifier**       | intranda_generic_barcodeScanner
+**Plugin type**             | generic
 **Licence**                 | GPL 2.0 or newer
-**Documentation (German)**  | https://docs.goobi.io/workflow-plugins/v/ger/step/goobi-plugin-generic-barcode-scanner
-**Documentation (English)** | https://docs.goobi.io/workflow-plugins/v/eng/step/goobi-plugin-generic-barcode-scanner
+**Documentation (German)**  | https://docs.goobi.io/workflow-plugins/v/ger/generic/goobi-plugin-generic-barcode-scanner
+**Documentation (English)** | https://docs.goobi.io/workflow-plugins/v/eng/generic/goobi-plugin-generic-barcode-scanner
 
 ## Goobi details
 
