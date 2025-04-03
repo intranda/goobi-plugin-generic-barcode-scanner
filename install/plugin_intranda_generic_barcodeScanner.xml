@@ -1,0 +1,9 @@
+<config>
+    <docking>MENU_BAR</docking>
+    <barcode description="Setze Vorgangseigenschaft '{{1}}' auf '{{2}}'" pattern="ps_(.*)_(\d+)" sample="ps_Standort_54">
+        ---
+        action: propertySet
+        name: {{1}}
+        value: {{2}}
+	</barcode>
+</config>

@@ -1,0 +1,9 @@
+<project name="goobi-plugin-generic-barcode-scanner" default="devbuild">
+	<target name="devbuild">
+		<exec executable="mvn">
+			<arg value="package"/>
+		</exec>
+		<copy file="module-gui/target/plugin-generic-barcode-scanner-gui.jar" todir="/opt/digiverso/goobi/plugins/GUI/"/>
+		<copy file="module-base/target/plugin-generic-barcode-scanner-base.jar" todir="/opt/digiverso/goobi/plugins/generic/"/>
+	</target>
+</project>

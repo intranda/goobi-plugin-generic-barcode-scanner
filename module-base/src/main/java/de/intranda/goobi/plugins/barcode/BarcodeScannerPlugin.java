@@ -5,9 +5,10 @@ import de.intranda.goobi.plugins.barcode.config.BarcodeFormat;
 import de.intranda.goobi.plugins.barcode.config.BarcodeScannerPluginConfiguration;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import net.xeoh.plugins.base.annotations.PluginImplementation;
 import org.apache.commons.lang3.StringUtils;
 import org.goobi.production.plugin.DockAnchor;
-import org.goobi.production.plugin.interfaces.AbstractDockablePlugin;
+import org.goobi.production.plugin.interfaces.AbstractGenericPlugin;
 
 import jakarta.annotation.ManagedBean;
 import jakarta.enterprise.context.RequestScoped;
@@ -21,7 +22,8 @@ import java.util.List;
 @Data
 @ManagedBean
 @RequestScoped
-public class BarcodeScannerPlugin extends AbstractDockablePlugin {
+@PluginImplementation
+public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     @Override
     public String getId() {
         return getTitle().replaceAll("\\s+", "");
@@ -115,7 +117,7 @@ public class BarcodeScannerPlugin extends AbstractDockablePlugin {
     private BarcodeScannerPluginConfiguration config() throws IOException {
         if (this.config == null) {
             XmlMapper mapper = new XmlMapper();
-            this.config = mapper.readValue(new File("/opt/digiverso/goobi/config/plugin_intranda_dockable_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
+            this.config = mapper.readValue(new File("/opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
         }
         return this.config;
     }
