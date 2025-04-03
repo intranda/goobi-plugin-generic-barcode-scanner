@@ -38,6 +38,7 @@ If the barcode corresponds to a configured barcode format, the corresponding Goo
 If the plugin is re-entered and a process title is then scanned, the previously activated GoobiScript is applied to this process.
 
 ![Scan process barcode](screen_04_en.png)
+
 ![Applying GoobiScript to a process](screen_05_en.png)
 
 Batches can also be scanned instead of processes. In this case, the GoobiScript is executed for all processes in the batch.

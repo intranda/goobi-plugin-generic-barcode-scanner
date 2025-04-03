@@ -38,6 +38,7 @@ Wenn der Barcode einem konfigurierten Barcodeformat entspricht, wird das entspre
 Wenn das Plugin erneut betreten wird und dann ein Vorgangstitel gescannt wird, wird das zuvor aktivierte GoobiScript auf diesen Vorgang angewandt.
 
 ![Vorgangsbarcode scannen](screen_04_de.png)
+
 ![GoobiScript auf Vorgang anwenden](screen_05_de.png)
 
 Anstelle von Vorgängen können auch Batches gescannt werden. In diesem Fall wird das GoobiScript für alle Vorgänge des Batches ausgeführt.
