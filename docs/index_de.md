@@ -38,6 +38,7 @@ Wenn der Barcode einem konfigurierten Barcodeformat entspricht, wird das entspre
 Wenn das Plugin erneut betreten wird und dann ein Vorgangstitel gescannt wird, wird das zuvor aktivierte GoobiScript auf diesen Vorgang angewandt.
 
 ![Vorgangsbarcode scannen](screen_04_de.png)
+
 ![GoobiScript auf Vorgang anwenden](screen_05_de.png)
 
 Anstelle von Vorgängen können auch Batches gescannt werden. In diesem Fall wird das GoobiScript für alle Vorgänge des Batches ausgeführt.
@@ -54,12 +55,11 @@ Die Konfiguration des Plugins erfolgt in der Datei `plugin_intranda_generic_barc
 
 {{CONFIG_CONTENT}}
 
-{{CONFIG_DESCRIPTION_PROJECT_STEP}}
+{{CONFIG_DESCRIPTION_GENERIC}}
 
 Parameter               | Erläuterung
 ------------------------|------------------------------------
-`docking`                      | Mit diesem Element wird gesteuert, wo das Plugin eingebunden werden soll. Mit `MENU_BAR` kann das Plugin beispielsweise in der Hauptleiste eingeblendet werden. Das Element kann wiederholt werden, um das Plugin an mehreren Stellen einzubinden. Derzeit sind hierfür die Werte `FOOTER` und `MENU_BAR` wählbar, um das Plugin entweder in der Menüleiste oder in der Footerleiste anzuzeigen.
-`barcode`                      | Das `barcode` Element kann beliebig häufig wiederholt werden, um Barcodeformate zu spezifizieren. Ein Barcodeformat hat die Attribute `description`, `pattern` und `sample`. <br /><br />Die `description` ist eine textuelle Beschreibung des Barcodeformats. Falls das Barcodeformat Parameter enthalten kann, können diese mit `{{n}}` in die Beschreibung eingebunden werden. Hierbei ist `n` durch die Nummer des Parameters zu ersetzen, beginnend bei `1`.<br /><br />Das `pattern` ist ein regulärer Ausdruck, der den gesamten Barcode beschreibt. Im regulären Ausdruck können mit Klammern Gruppen definiert werden. Das kann verwendet werden, um Teile des Barcodes als Parameter zu definieren. Im Falle der Beispielkonfiguration ist `(\d+)` eine Gruppe, die eine Zahl mit mindestens einer Ziffer beschreibt. Diese Gruppe ist dann als `{{1}}` (der erste Parameter) verwendbar.<br /><br />Das `sample` ist ein möglicher Beispielbarcode. Dieser wird bei der Barcodegenerierung verwendet, um mögliche Beispielbarcodes anzeigen zu können. Dieser Beispielbarcode muss zum regulären Ausdruck passen.<br /><br />Der Inhalt des `barcode` Elements ist ein beliebiges GoobiScript. Es können mit `---` auch mehrere GoobiScripte hintereinander eingetragen werden. Mit `{{n}}` können die Parameter des Barcodes im GoobiScript verwendet werden.
+`barcode`               | Das `barcode` Element kann beliebig häufig wiederholt werden, um Barcodeformate zu spezifizieren. Ein Barcodeformat hat die Attribute `description`, `pattern` und `sample`. <br /><br />Die `description` ist eine textuelle Beschreibung des Barcodeformats. Falls das Barcodeformat Parameter enthalten kann, können diese mit `{{n}}` in die Beschreibung eingebunden werden. Hierbei ist `n` durch die Nummer des Parameters zu ersetzen, beginnend bei `1`.<br /><br />Das `pattern` ist ein regulärer Ausdruck, der den gesamten Barcode beschreibt. Im regulären Ausdruck können mit Klammern Gruppen definiert werden. Das kann verwendet werden, um Teile des Barcodes als Parameter zu definieren. Im Falle der Beispielkonfiguration ist `(\d+)` eine Gruppe, die eine Zahl mit mindestens einer Ziffer beschreibt. Diese Gruppe ist dann als `{{1}}` (der erste Parameter) verwendbar.<br /><br />Das `sample` ist ein möglicher Beispielbarcode. Dieser wird bei der Barcodegenerierung verwendet, um mögliche Beispielbarcodes anzeigen zu können. Dieser Beispielbarcode muss zum regulären Ausdruck passen.<br /><br />Der Inhalt des `barcode` Elements ist ein beliebiges GoobiScript. Es können mit `---` auch mehrere GoobiScripte hintereinander eingetragen werden. Mit `{{n}}` können die Parameter des Barcodes im GoobiScript verwendet werden.
 
 Weil die Konfiguration etwas komplex ist, erklären wir sie am Beispiel des zweiten Barcodeformats in der Konfiguration:
 
