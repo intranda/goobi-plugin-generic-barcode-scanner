@@ -9,7 +9,6 @@
   </parent>
   <groupId>io.goobi.workflow.plugin</groupId>
   <artifactId>plugin-generic-barcode-scanner</artifactId>
-  <version>25.05</version>
   <packaging>pom</packaging>
   <modules>
     <module>module-base</module>
