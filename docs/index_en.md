@@ -66,11 +66,13 @@ As the configuration is somewhat complex, we will explain it using the example o
 The barcode has the description `Set operation property ‘{{1}}’ to ‘{{2}}’`. The regular expression is `ps_(.*)_(\d+)` and an example barcode could be `ps_location_54`.
 The regular expression matches all inputs beginning with `ps_`, followed by anything, then again an underscore `_` followed by a number with at least one digit.
 If such a barcode is scanned, for example `ps_location_54`, the following GoobiScript is activated:
+
 ```yaml
 action: propertySet
 name: Standort
 value: 54
 ```
+
 The two placeholders `{{1}}` and `{{2}}` have already been replaced here by the values `location` and `54` of the scanned barcode.
 
 If a process title is now scanned, this GoobiScript is executed for the process. As a result, the process property ‘Location’ is set to the value ‘54’.
