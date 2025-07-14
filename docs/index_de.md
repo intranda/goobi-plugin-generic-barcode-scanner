@@ -22,7 +22,6 @@ Nach der Installation des Plugins kann dieses konfigurierbar an verschiedenen St
 
 ![Barcode Plugin in der Menüleiste](screen_01_de.png)
 
-
 ## Überblick und Funktionsweise
 Beim Betreten des Plugins erscheint ein Dialogfenster, in dem Barcodes sowohl gescannt als auch generiert werden können.
 
@@ -72,6 +71,7 @@ action: propertySet
 name: Standort
 value: 54
 ```
-Die beiden Platzhalten `{{1}}` und `{{2}}` wurden hier bereits durch die Werte `Standort` und `54` des gescannten Barcodes ersetzt.
+
+Die beiden Platzhalter `{{1}}` und `{{2}}` wurden hier bereits durch die Werte `Standort` und `54` des gescannten Barcodes ersetzt.
 
 Wenn jetzt ein Vorgangstitel gescannt wird, wird dieses GoobiScript für den Vorgang ausgeführt. Das hat dann zur Folge, dass die Vorgangseigenschaft `Standort` auf den Wert `54` gesetzt wird.
