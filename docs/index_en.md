@@ -3,6 +3,10 @@ title: Barcode Scanner
 identifier: intranda_generic_barcodeScanner
 description: This generic plugin for Goobi workflow allows barcodes to be scanned and configurable GoobiScripts to be executed.
 published: true
+keywords:
+    - Goobi workflow
+    - Plugin
+    - Generic Plugin
 ---
 
 ## Introduction
