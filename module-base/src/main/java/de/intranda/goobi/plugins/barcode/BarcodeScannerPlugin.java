@@ -54,8 +54,8 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     }
 
     @Override
-    public String getModalPath() {
-        return "../includes/barcodePlugin/barcodeModal.xhtml";
+    public String getModalFileName() {
+        return "barcodeModal.xhtml";
     }
 
     private String code;
