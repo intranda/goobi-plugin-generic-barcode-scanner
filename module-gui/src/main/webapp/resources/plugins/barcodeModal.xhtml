@@ -39,7 +39,9 @@
                             <!-- Config page -->
                             <h:panelGroup rendered="#{cc.attrs.plugin.showConfig == true}">
                                 <form:field
-                                    label="#{msgs.plugin_generic_barcodeScanner_selectBarcodeFormat}">
+                                    label="#{msgs.plugin_generic_barcodeScanner_selectBarcodeFormat}"
+                                    styleClass=""
+                                >
                                     <h:selectOneMenu
                                         id="barcodeSelection"
                                         label="Barcode:"
@@ -69,7 +71,9 @@
                                     rendered="#{cc.attrs.plugin.selectedConfigFormat != null}">
                                     <ui:repeat value="#{cc.attrs.plugin.barcodeFields}" var="field">
                                         <form:field
-                                            label="#{msgs[field.label]}">
+                                            label="#{msgs[field.label]}"
+                                            styleClass=""
+                                        >
                                             <h:inputText
                                                 value="#{field.value}"
                                                 styleClass="form-control"
@@ -96,7 +100,9 @@
                             <h:panelGroup rendered="#{cc.attrs.plugin.showConfig == false}">
                                 <h:panelGroup rendered="#{cc.attrs.plugin.activeFormats.size() > 0}">
                                     <form:field
-                                        label="#{cc.attrs.plugin.activeFormats.size() > 1 ? msgs.plugin_generic_barcodeScanner_activeFormats : msgs.plugin_generic_barcodeScanner_activeFormat}">
+                                        label="#{cc.attrs.plugin.activeFormats.size() > 1 ? msgs.plugin_generic_barcodeScanner_activeFormats : msgs.plugin_generic_barcodeScanner_activeFormat}"
+                                        styleClass=""
+                                    >
                                         <ul role="list" class="p-0 m-0">
                                             <ui:repeat value="#{cc.attrs.plugin.activeFormats}" var="format">
                                                 <li>
@@ -107,7 +113,9 @@
                                     </form:field>
                                 </h:panelGroup>
                                 <form:field
-                                    label="#{msgs.plugin_generic_barcodeScanner_barcode}">
+                                    label="#{msgs.plugin_generic_barcodeScanner_barcode}"
+                                    styleClass=""
+                                >
                                     <h:inputText
                                             id="barcodeInput"
                                             autocomplete="off"
