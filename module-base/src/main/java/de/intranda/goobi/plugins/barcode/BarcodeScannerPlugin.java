@@ -36,7 +36,7 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
 
     @Override
     public String getIcon() {
-        return "fa-barcode";
+        return "barcode";
     }
 
     @Override
