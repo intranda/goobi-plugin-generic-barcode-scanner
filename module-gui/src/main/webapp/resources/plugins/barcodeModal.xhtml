@@ -7,7 +7,8 @@
         xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
         xmlns:jsf="http://xmlns.jcp.org/jsf"
         xmlns:intranda="http://xmlns.jcp.org/jsf/composite/composites"
-        xmlns:form="http://goobi.io/form">
+        xmlns:form="http://goobi.io/form"
+        xmlns:util="http://goobi.io/util">
 
     <composite:interface>
         <!--                type="org.goobi.production.plugin.interfaces.IGenericPlugin"-->
@@ -22,16 +23,16 @@
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
                     <div jsf:id="modalHeader" class="modal-header #{cc.attrs.plugin.showConfig == true ? 'bg-action' : 'bg-primary-400'} text-white justify-content-between">
-                        <h3 class="modal-title h6">
-                            <span class="fa fa-barcode me-2" aria-hidden="true" />
+                        <h3 class="modal-title h6 d-flex align-items-center">
+                            <util:icon icon="#{cc.attrs.plugin.icon}" styleClass="me-2" />
                             <span>
                                 #{cc.attrs.plugin.showConfig == false ?
                                     msgs.plugin_generic_barcodeScanner_scanBarcode
                                     : msgs.plugin_generic_barcodeScanner_configureBarcode}
                             </span>
                         </h3>
-                        <button type="button" class="btn" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true" class="fa fa-times text-white"/>
+                        <button type="button" class="btn btn-icon" data-bs-dismiss="modal" aria-label="Close">
+                            <util:icon icon="x" styleClass="text-white" />
                         </button>
                     </div>
                     <h:form>
