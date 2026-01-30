@@ -3,9 +3,14 @@ package de.intranda.goobi.plugins.barcode;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import de.intranda.goobi.plugins.barcode.config.BarcodeFormat;
 import de.intranda.goobi.plugins.barcode.config.BarcodeScannerPluginConfiguration;
+import de.sub.goobi.config.ConfigPlugins;
+import de.sub.goobi.helper.Helper;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import net.xeoh.plugins.base.annotations.PluginImplementation;
+import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
 import org.apache.commons.lang3.StringUtils;
 import org.goobi.production.plugin.DockAnchor;
 import org.goobi.production.plugin.interfaces.AbstractGenericPlugin;
@@ -31,7 +36,7 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
 
     @Override
     public String getIcon() {
-        return "fa-barcode";
+        return "barcode";
     }
 
     @Override
@@ -54,8 +59,8 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     }
 
     @Override
-    public String getModalPath() {
-        return "../includes/barcodePlugin/barcodeModal.xhtml";
+    public String getModalFileName() {
+        return "barcodeModal.xhtml";
     }
 
     private String code;
@@ -117,7 +122,7 @@ public class BarcodeScannerPlugin extends AbstractGenericPlugin {
     private BarcodeScannerPluginConfiguration config() throws IOException {
         if (this.config == null) {
             XmlMapper mapper = new XmlMapper();
-            this.config = mapper.readValue(new File("/opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
+            this.config = mapper.readValue(new File(new Helper().getGoobiConfigDirectory() + "plugin_intranda_generic_barcodeScanner.xml"), BarcodeScannerPluginConfiguration.class);
         }
         return this.config;
     }
