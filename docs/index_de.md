@@ -22,7 +22,7 @@ Um das Plugin nutzen zu können, müssen folgende Dateien installiert werden:
 /opt/digiverso/goobi/config/plugin_intranda_generic_barcodeScanner.xml
 ```
 
-Nach der Installation des Plugins kann dieses konfigurierbar an verschiedenen Stellen der Nuzteroberfläche eingebunden werden (beispielsweise als Barcode-Button in der Menüleiste).
+Nach der Installation des Plugins kann dieses konfigurierbar an verschiedenen Stellen der Nutzeroberfläche eingebunden werden (beispielsweise als Barcode-Button in der Menüleiste).
 
 ![Barcode Plugin in der Menüleiste](screen_01_de.png)
 
